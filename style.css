@@ -32,6 +32,7 @@ body {
   }
      
   .letter {
+      color:black;
       border: 1px solid black;
       padding: 3px;
       margin: 3px;
@@ -41,7 +42,14 @@ body {
   }
      
   .row{
-      margin-bottom: 10px;
+      margin-bottom: 0 auto;;
+      border:none;
+      border-radius: 10px;
+      position: static;
+      transform: translate(43.7%,10%);
+      top:50%;
+      right:50%;
+      
   }
      
   .input-area{

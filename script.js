@@ -1,5 +1,7 @@
+const API_URL ="https://random-word-api.herokuapp.com/word?length=5&lang=es"; 
 let intentos = 6;
 let diccionario = ['APPLE', 'HURLS', 'WINGS', 'YOUTH'];
+let palabra1;
 const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
 
 
@@ -15,8 +17,8 @@ function intentar(){
     const ROW = document.createElement('div');
     ROW.className = 'row';
     const INTENTO = leerIntento();
-    if (INTENTO === palabra ) {
-        terminar("<h1>GANASTE!😀</h1>")
+    if (INTENTO === palabra1 ) {
+        terminar("<h1>GANASTE!</h1>")
         return
     }
     
@@ -24,7 +26,7 @@ function intentar(){
         for (let i in palabra){
             const SPAN = document.createElement('span');
             SPAN.className = 'letter';
-            if (INTENTO[i]===palabra[i]){ //VERDE
+            if (INTENTO[i]===palabra1[i]){ //VERDE
                 SPAN.innerHTML = INTENTO[i];
                 SPAN.style.backgroundColor = '#79b851';
             } else if( palabra.includes(INTENTO[i]) ) { //AMARILLO
@@ -40,11 +42,12 @@ function intentar(){
         }
         intentos=intentos-1;
         if (intentos===0){
-            terminar("<h1>PERDISTE!😖</h1>")
+            terminar("<h1>PERDISTE!</h1>")
         }
 
    
     GRID.appendChild(ROW)
+
     }
 }
 		
@@ -65,3 +68,10 @@ function leerIntento(){
     intento = intento.toUpperCase(); 
     return intento;
 }
+fetch(API_URL).then((response) =>{
+    response.json().then((body)=>{
+        
+        palabra1 = body[0].toUpperCase();
+        console.log(palabra1);
+    });
+});
